@@ -3,27 +3,32 @@ import React from 'react'
 import useEmblaCarousel, { EmblaOptionsType } from 'embla-carousel-react'
 import { PropsWithChildren } from 'react'
 import CarouselControls from './CarouselControls'
+import PrevControl from './PrevControl'
 import Autoplay from 'embla-carousel-autoplay'
+import NextControl from './NextControl'
 
-type Props = PropsWithChildren & EmblaOptionsType & {
-    options: Partial<EmblaOptionsType>;
-  };
+type Props = PropsWithChildren &
+  EmblaOptionsType & {
+    options: Partial<EmblaOptionsType>
+  }
 const Carousel = ({ children, options }: Props) => {
-    const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
-    const length = React.Children.count(children)
-    const canScrollPrev = !!emblaApi?.canScrollPrev();
-    const canScrollNext = !!emblaApi?.canScrollNext();
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
+  const length = React.Children.count(children)
+  const canScrollPrev = !!emblaApi?.canScrollPrev()
+  const canScrollNext = !!emblaApi?.canScrollNext()
   return (
     <>
-    <div className='embla overflow-hidden' ref={emblaRef}>
-      <div className='flex embla__slide'>{children}</div>
-    </div>
-      <CarouselControls
-        canScrollNext={canScrollNext}
+      <PrevControl
         canScrollPrev={canScrollPrev}
-        onNext={() => emblaApi?.scrollNext()}
         onPrev={() => emblaApi?.scrollPrev()}
-        />
+      />
+      <div className='embla overflow-hidden' ref={emblaRef}>
+        <div className='flex embla__slide'>{children}</div>
+      </div>
+      <NextControl
+        canScrollNext={canScrollNext}
+        onNext={() => emblaApi?.scrollNext()}
+      />
     </>
   )
 }

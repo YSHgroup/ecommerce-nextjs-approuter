@@ -1,7 +1,7 @@
-import { Props } from "@/types";
+import { Props, next } from "@/types";
 import classNames from "classnames";
 
-const NextControl = (props: Props ) => {
+const NextControl = (props: Props & next ) => {
     return (
         <button
         onClick={() => {
