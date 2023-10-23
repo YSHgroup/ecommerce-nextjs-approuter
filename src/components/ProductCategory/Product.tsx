@@ -3,7 +3,7 @@ import Card from './Card'
 
 const Product = ({product}: {product: any}) => {
     return (
-        <div className=''>
+        <div className='m-4'>
           <Card item = {product} />
         </div>
     )
