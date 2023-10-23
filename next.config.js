@@ -1,13 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "img.lovepik.com",
-        // port: "",
-      },
-    ],
+    domains:['img.lovepik.com', 'placehold.co', 'i.dummyjson.com']
+    // remotePatterns: [
+    //   {
+    //     protocol: "https",
+    //     hostname: ["img.lovepik.com"],
+    //     // port: "",
+    //   },
+    // ],
   },
 };
 
