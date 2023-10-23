@@ -9,3 +9,8 @@ export type Props = {
   canScrollPrev?: boolean;
   canScrollNext?: boolean;
 };
+
+export type productByCategoryType = {
+  category: string
+  product: Record<string, string | string[]>[]
+}
