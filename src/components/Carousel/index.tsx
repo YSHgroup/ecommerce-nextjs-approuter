@@ -31,7 +31,7 @@ const Carousel = ({ children, options }: Props) => {
       />
       <Link
         href={'/#my-Categories'}
-        className='absolute p-2 top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 btn btn-ghost border border-emerald-600 text-white/90 bg-emerald-500/40 hover:bg-emerald-500  z-40'
+        className='absolute p-2 top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 btn btn-ghost border border-emerald-600 text-white/90 bg-emerald-500/40 hover:bg-emerald-500  z-5'
       >
         Shop Now
       </Link>

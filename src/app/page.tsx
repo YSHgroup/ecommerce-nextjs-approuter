@@ -1,11 +1,14 @@
 import Image from 'next/image'
-import Content from '../components/HomeContents'
+import HomeCarousel from '../components/HomeContents/HomeCarousel'
+import { getData } from '@/functions/getData'
 
 export default async function Home() {
+  const { products } = await getData('https://dummyjson.com/products?limit=10')
+
   return (
     <main className='flex h-screen flex-col items-center justify-center'>
       <div className='background fixed'></div>
-      <Content />
+      <HomeCarousel thmbImages = {products} />
     </main>
   )
 }
