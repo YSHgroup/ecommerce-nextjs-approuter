@@ -22,13 +22,13 @@ const HomeContent: React.FC<{ products: any[] }> = ({ products }) => {
           .product.push(preProduct)
   })
   return (
-    <div id='category-container' className='w-full bg-slate-800/90 '>
+    <section id='category-container' className='w-full bg-slate-800/90 '>
       <div className='container mx-auto xl:w-5/6  mt-16'>
       {
         productsByCategory.map((productByCategory, i) => <ProductCategory key={i} productByCategory={productByCategory}/>)
       }
       </div>
-    </div>
+    </section>
   )
 }
 
