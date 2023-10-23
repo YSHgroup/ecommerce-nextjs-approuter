@@ -13,7 +13,7 @@ const Home: NextPage<{thmbImages: any}> = async ({thmbImages}) => {
     align: 'center',
   }
   return (
-    <div className='flex flex-col lg:w-3/4 mx-auto my-2 h-screen justify-end'>
+    <div className='flex flex-col lg:w-3/4 mx-auto my-2 h-screen justify-end mb-6 pb-6'>
       <Carousel options={OPTIONS}>
         {images.map((src: string, i: number) => {
           return (

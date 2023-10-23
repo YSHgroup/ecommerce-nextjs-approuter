@@ -7,8 +7,8 @@ export default async function Home() {
   const { products } = await getData('https://dummyjson.com/products?limit=10')
 
   return (
-    <main className='flex h-screen flex-col items-center justify-center'>
-      <div className='background fixed'></div>
+    <main className='flex flex-col items-center '>
+      <div className='background h-screen w-full fixed -z-10'></div>
       <HomeCarousel thmbImages = {products} />
       <HomeContainer products={products}/>
     </main>

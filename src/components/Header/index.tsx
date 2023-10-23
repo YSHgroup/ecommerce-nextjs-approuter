@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 const Header = () => {
   return (
-    <header className='flex w-full justify-between px-10 bg-opacity-80 bg-slate-950 h-16 items-center fixed'>
+    <header className='flex w-full justify-between px-10 bg-opacity-80 bg-slate-950 h-16 items-center fixed z-20'>
       <span>
         <Image
           src={'https://img.lovepik.com/element/40169/9600.png_860.png'}

@@ -22,9 +22,9 @@ const HomeContent: React.FC<{ products: any[] }> = ({ products }) => {
           .product.push(preProduct)
   })
   return (
-    <div className='container '>
+    <div className='container bg-slate-800'>
       {
-				productsByCategory.map((product, i) => <ProductCategory key={i} product={product}/>)
+				productsByCategory.map((productByCategory, i) => <ProductCategory key={i} productByCategory={productByCategory}/>)
       }
     </div>
   )

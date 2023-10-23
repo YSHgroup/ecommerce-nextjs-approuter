@@ -24,7 +24,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-    >main {
+    >main>div.background {
       background-image: url(../../public/bg/shopping-cart-card-icon-discounts_116441-26066.avif);
       /* background-image: url(https://valasys.com/wp-content/uploads/2023/10/An-Overview-of-Professional-Services-Automation-and-Its-Benefits.jpg); */
       background-repeat: no-repeat;
