@@ -1,12 +1,7 @@
 // components/CarouselControls.tsx
 import classNames from "classnames";
+import {Props} from '@/types'
 
-type Props = {
-  canScrollPrev: boolean;
-  canScrollNext: boolean;
-  onPrev(): void;
-  onNext(): void;
-};
 const CarouselControls = (props: Props) => {
   return (
     <div className="flex justify-end gap-2 ">
