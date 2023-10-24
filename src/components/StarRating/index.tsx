@@ -6,11 +6,9 @@ const StarRating = ({ rate }: { rate: number }) => {
 					<div className="w-full h-full"
 						key={i} style={i+1<rate? {backgroundColor: 'gold', width: '100%'}: {backgroundColor: 'gold', width: `${((rate - Math.floor(rate)))*100}%`}}
 					>
-
 					</div>
 				</div>
       ))}
-
       {rate}
     </div>
   )

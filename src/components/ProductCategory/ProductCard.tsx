@@ -28,7 +28,7 @@ const ProductCard = ({ product }: { product: any }) => {
           </p>
           <div className='columns-2'>
             <p><span className={labelStyle}>Price: </span>${product.price}</p>
-            <p><span className={labelStyle}>Stock: </span>{product.stock}</p>
+            <p className=' float-right'><span className={labelStyle}>Stock: </span>{product.stock}</p>
           </div>
           <div className=''>
             <div className='flex justify-between items-center'>
@@ -44,7 +44,7 @@ const ProductCard = ({ product }: { product: any }) => {
               </p>
               
             </div>
-            <div><span className={labelStyle}>Rating:</span> <StarRating rate={product.rating} /></div>
+            <div className='flex items-center justify-between'><span className={labelStyle}>Rating:</span> <StarRating rate={product.rating} /></div>
           </div>
         </figcaption>
       </figure>
