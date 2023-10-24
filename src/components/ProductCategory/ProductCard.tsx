@@ -6,11 +6,11 @@ const ProductCard = ({ product }: { product: any }) => {
   const labelStyle = 'font-serif text-blue-800'
   return (
     <div
-      className='w-96 h-[32rem] rounded m-4 bg-cyan-100 overflow-hidden'
+      className='w-96 h-[28rem] rounded m-4 bg-cyan-100 overflow-hidden'
       style={{ boxShadow: '1px 1px 2px white', border: '1px solid white' }}
     >
       <figure className='w-full h-full'>
-        <div className='relative h-2/3'>
+        <div className='relative h-3/5'>
           <Image
             className='object-content border-b-slate-400 border-b'
             src={product.thumbnail}

@@ -6,7 +6,7 @@ export async function GET() {
     if (apiKey) {
         headers.append('API-Key', apiKey)
     }
-    const res = await fetch('https://dummyjson.com/products?limit=10', {
+    const res = await fetch('https://dummyjson.com/products/category/smartphones?limit=10', {
       headers: headers,
     })
     const data = await res.json()
