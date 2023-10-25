@@ -1,8 +1,18 @@
 import React from 'react'
 import ProductCategory from '../ProductCategory'
+import Pagination from '@/components/Pagination'
 import {productByCategoryType} from '@/types'
 
-const HomeContent: React.FC<{ products: any[] }> = ({ products }) => {
+type HomePropsType = {
+  products: any[]
+  pageInfo: {
+    total: number
+    skip: number
+    limit: number
+  }
+}
+
+const HomeContent: React.FC<HomePropsType> = ({ products, pageInfo }) => {
   let productsByCategory: productByCategoryType[] = []
   const checkCatgory = (stackedcategory: string[], category: string) => {
     return !!!stackedcategory.find((categories) => categories === category)
@@ -28,6 +38,7 @@ const HomeContent: React.FC<{ products: any[] }> = ({ products }) => {
         productsByCategory.map((productByCategory, i) => <ProductCategory key={i} productByCategory={productByCategory}/>)
       }
       </div>
+      <Pagination pageInfo = {pageInfo} />
     </section>
   )
 }
