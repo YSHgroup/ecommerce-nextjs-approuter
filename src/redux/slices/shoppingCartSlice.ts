@@ -4,11 +4,11 @@ import { RootState } from "../store";
 export const shoppingCartSlice = createSlice({
   name: 'shopping_cart',
   initialState: {
-    quantity: 1
+    productInCart: [{ id: '', quantity: 1 }]
   },
   reducers: {
     putProduct: (state, action) => {
-      state.quantity = action.payload
+      state.productInCart.push(action.payload)
     }
   }
 })

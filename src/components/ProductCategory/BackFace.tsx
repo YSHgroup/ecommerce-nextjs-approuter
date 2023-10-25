@@ -1,10 +1,25 @@
 /** @format */
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useSelector, useDispatch } from 'react-redux' 
+import { RootState } from '@/redux/store'
+import { putProduct } from '@/redux/slices/shoppingCartSlice';
 
 import Image from 'next/image'
 import addCart from '../../../public/shopping-cart-16-svgrepo-com.svg'
 const BackFace = ({ product }: { product: any }) => {
+  const dispatch = useDispatch()
+  const {productInCart} = useSelector((state: RootState)=> state.shop)
+  const productToDisplay = productInCart.find(ware => ware.id === product.id)
+  const [quantityToPut, setQuantity] = useState(!!productToDisplay ? productToDisplay.quantity : 1)
 	const router = useRouter()
+  const confirmPut = () => {
+    dispatch(putProduct({id: product.id ,quantity: quantityToPut}))
+  }
+  useEffect(()=>{
+    console.log('count->', productToDisplay)
+
+  },[productToDisplay])
 	return (
 		<div className='flip-card-back absolute flex justify-center items-center w-full h-full'>
 			<div
@@ -46,13 +61,14 @@ const BackFace = ({ product }: { product: any }) => {
 							name='count'
 							id='count'
 							size={3}
-              defaultValue={1}
+              value={quantityToPut}
+              onChange={(event) => setQuantity(Number(event.target.value))}
               max={product.stock}
               min={1}
 						/>
 					</div>
 					<div>
-						<Image src={addCart} alt='add_cart' width={50} height={50} onClick={() => {}} />
+						<Image src={addCart} alt='add_cart' width={50} height={50} onClick={() => confirmPut()} />
 					</div>
 				</div>
 				{/* <button className="rounded from-teal-600 bg-gradient-to-t hover:bg-gradient-to-b text-cyan-100 font-bold border-emerald-950 px-6 py-4 border-b-2 shadow-convex">Shopping</button> */}
