@@ -1,32 +1,35 @@
+/** @format */
+
 import HomeCarousel from '../components/HomeContents/HomeCarousel'
 import HomeContainer from '../components/HomeContents'
 import { getData } from '@/functions/getData'
 import SideBar from '@/components/SideBar'
-
-type searchParamsType = Record<string, Record<string, string>>
+import { searchParamsType } from '@/types'
+import { analyseSearchParams } from '../functions/analyseSearchParams'
 
 export default async function Home(searchParam: searchParamsType) {
-  const { searchParams } = searchParam
-  const limit = 'limit=10'
+	const { searchParams } = searchParam
 
-  const categoriesRes = (await getData(
-    'https://dummyjson.com/products/categories'
-  )) as string[]
-  
-  const { products } = await getData(
-    `https://dummyjson.com/products/${
-      searchParams['category'] !== '' && searchParams['category'] !== undefined
-        ? 'category/' + searchParams['category'] + '?'
-        : '?'
-    }${limit}`
-  )
+	const categoriesRes = (await getData(
+		'https://dummyjson.com/products/categories'
+	)) as string[]
 
-  return (
-    <main className='flex flex-col items-center '>
-      <div className='background h-screen w-full fixed -z-10' />
-      <SideBar categories={categoriesRes} />
-      <HomeCarousel thmbImages={products} />
-      <HomeContainer products={products} />
-    </main>
-  )
+	const { products } = await getData(
+		`https://dummyjson.com/products/${analyseSearchParams(
+			searchParams,
+			'category'
+		)}?limit=${analyseSearchParams(
+			searchParams,
+			'limit'
+		)}&skip=${analyseSearchParams(searchParams, 'skip')}`
+	)
+
+	return (
+		<main className='flex flex-col items-center '>
+			<div className='background h-screen w-full fixed -z-10' />
+			<SideBar categories={categoriesRes} />
+			<HomeCarousel thmbImages={products} />
+			<HomeContainer products={products} />
+		</main>
+	)
 }
