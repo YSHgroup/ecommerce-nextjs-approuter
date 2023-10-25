@@ -9,7 +9,7 @@ const ProductCard = ({ product }: { product: any }) => {
     <div
       className='flip-card w-96 h-[28rem] rounded m-4 overflow-hidden'
       style={{ boxShadow: '1px 1px 2px white', border: '1px solid white', perspective: '30rem' }}
-      onClick={() => router.push(product.id)}
+      onClick={() => router.push('shopping/'+product.id)}
     >
       <div className='rotate-card relative w-full h-full'>
       <FrontFace product={product} />
