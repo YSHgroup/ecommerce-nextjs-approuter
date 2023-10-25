@@ -9,14 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.7",
     "classname": "^0.0.0",
     "classnames": "^2.3.2",
     "embla-carousel-autoplay": "^8.0.0-rc14",
     "embla-carousel-react": "^8.0.0-rc14",
     "next": "13.5.5",
-    "react": "^18",
+    "react": "^18.2.0",
     "react-dom": "^18",
-    "react-simple-star-rating": "^5.1.7"
+    "redux": "^4.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",

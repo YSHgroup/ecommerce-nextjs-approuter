@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
   images: {
     domains:['img.lovepik.com', 'placehold.co', 'i.dummyjson.com']
     // remotePatterns: [
