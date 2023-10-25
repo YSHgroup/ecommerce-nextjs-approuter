@@ -1,28 +1,19 @@
 /** @format */
 
 'use client'
+import { createQueryString } from '@/functions/createQueryString'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useCallback } from 'react'
 
 const SideBar = ({ categories }: { categories: string[] }) => {
 	const pathname = usePathname()
 	const router = useRouter()
 	const searchParams = useSearchParams()
 
-	const createQueryString = useCallback(
-		(name: string, value: string) => {
-			const params = new URLSearchParams(searchParams)
-			params.set(name, value)
-			return params.toString()
-		},
-		[searchParams]
-	)
-
 	const selCategory = (category: string) => {
 		if (category === '') {
-			router.push(pathname + '?' + createQueryString('category', ''))
+			router.push(pathname + '?' + createQueryString(searchParams, 'category', ''))
 		}
-		router.push(pathname + '?' + createQueryString('category', category))
+		router.push(pathname + '?' + createQueryString(searchParams, 'category', category))
 	}
 
 	return (
