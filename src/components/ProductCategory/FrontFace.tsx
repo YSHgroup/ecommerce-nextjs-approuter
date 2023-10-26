@@ -28,7 +28,7 @@ const FrontFace = ({ product }: { product: any }) => {
         </div>
         <div className=''>
           <div className='flex justify-between items-center'>
-            <p className={labelStyle}>DiscountPercentage: </p>
+            <p className={labelStyle}>Discount: </p>
             <p className='flex items-center'>
               <span className='text-1 text-xs mr-1'>{product.discountPercentage}% </span>
               <span className='flex rounded w-28 bg-white h-2 border overflow-hidden'>
@@ -40,7 +40,7 @@ const FrontFace = ({ product }: { product: any }) => {
             </p>
             
           </div>
-          <div className='flex items-center justify-between'><span className={labelStyle}>Rating:</span> <StarRating rate={product.rating} /></div>
+          <div className='flex items-center justify-center'><StarRating rate={product.rating} /></div>
         </div>
       </figcaption>
     </figure>

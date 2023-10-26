@@ -9,17 +9,17 @@ import Image from 'next/image'
 import addCart from '../../../public/shopping-cart-16-svgrepo-com.svg'
 const BackFace = ({ product }: { product: any }) => {
   const dispatch = useDispatch()
-  const {productInCart} = useSelector((state: RootState)=> state.shop)
-  const productToDisplay = productInCart.find(ware => ware.id === product.id)
+  const {productsInCart} = useSelector((state: RootState)=> state.shop)
+  const productToDisplay = productsInCart.find(ware => ware.id === product.id)
   const [quantityToPut, setQuantity] = useState(!!productToDisplay ? productToDisplay.quantity : 1)
 	const router = useRouter()
   const confirmPut = () => {
-    dispatch(putProduct({id: product.id ,quantity: quantityToPut}))
+    dispatch(putProduct({id: product.id ,quantity: quantityToPut, info: product}))
   }
   useEffect(()=>{
-    console.log('count->', productToDisplay)
+    console.log('count->', productsInCart)
 
-  },[productToDisplay])
+  },[productsInCart])
 	return (
 		<div className='flip-card-back absolute flex justify-center items-center w-full h-full'>
 			<div
@@ -67,7 +67,7 @@ const BackFace = ({ product }: { product: any }) => {
               min={1}
 						/>
 					</div>
-					<div>
+					<div className='p-1 hover:scale-110 shadow-slate-600 hover:shadow-md'>
 						<Image src={addCart} alt='add_cart' width={50} height={50} onClick={() => confirmPut()} />
 					</div>
 				</div>

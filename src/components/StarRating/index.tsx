@@ -1,6 +1,6 @@
 const StarRating = ({ rate }: { rate: number }) => {
   return (
-    <div className='flex'>
+    <div className='flex mt-1'>
       {[...Array(5)].map((_, i) => (
         <div className='rate-star' key={i} >
 					<div className="w-full h-full"

@@ -17,7 +17,7 @@ const SideBar = ({ categories }: { categories: string[] }) => {
 	}
 
 	return (
-		<nav className='side-bar max-h-80 overflow-auto cursor-pointer rounded-md shadow-sm shadow-slate-300 bg-gradient-to-b from-sky-800 fixed z-10 top-40 left-1'>
+		<nav className='side-bar duration-150 transition-all max-h-80 overflow-auto cursor-pointer rounded-md shadow-sm shadow-slate-300 bg-gradient-to-b from-sky-800 fixed z-10 top-40 left-1'>
 			<h1 className='visual-text flex justify-center items-center w-32 h-10 '>
 				Categories
 			</h1>
