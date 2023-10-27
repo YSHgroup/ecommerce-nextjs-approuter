@@ -6,9 +6,15 @@ import cart from '../../../public/shopping-cart-svgrepo-com.svg'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { delAuth } from '@/redux/slices/authSlice'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 const Header = () => {
 	const router = useRouter()
+	const pathname = usePathname()
+	const searchParams = useSearchParams()
+	console.log('searchparams-->', pathname)
+	const checkout = () => {
+		router.push('/check-out')
+	}
 	// const dispatch = useDispatch()
 	// const loginState = useSelector((state: any) => state.auth.authInfo)
 	// interface FullName {
@@ -39,10 +45,22 @@ const Header = () => {
 				/>
 			</span>
 			<div className='flex h-full overflow-hidden w-3/5 min-w-max items-center max-w-max'>
-				<div className='py-8 duration-150 cursor-pointer shadow-neutral-400 hover:drop-shadow hover:animate-bounce text-teal-200' 
-         onClick={() => router.push('/shopping/cart')}>
-					<Image src={cart} height={50} width={50} alt='cart' />
-				</div>
+				{pathname !== '/check-out' && (
+					<button
+						className='p-2 mx-4 rounded border-r shadow-sm shadow-slate-200 cursor-pointer hover:bg-sky-700/80'
+						onClick={checkout}
+					>
+						Check Out
+					</button>
+				)}
+				{pathname !== '/shopping/cart' && (
+					<div
+						className='py-8 duration-150 cursor-pointer shadow-neutral-400 hover:drop-shadow hover:animate-bounce text-teal-200'
+						onClick={() => router.push('/shopping/cart')}
+					>
+						<Image src={cart} height={50} width={50} alt='cart' />
+					</div>
+				)}
 			</div>
 			{/* {loginState ? (
 				<div className='flex h-full w-3/5 min-w-max items-center max-w-max'>

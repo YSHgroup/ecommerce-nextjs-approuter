@@ -29,9 +29,12 @@ export const shoppingCartSlice = createSlice({
       } else {
         state.productsInCart.push(action.payload);
       }
+    },
+    delProductInCart: (state, action) => {
+      state.productsInCart.splice(state.productsInCart.indexOf(action.payload), 1)
     }
   }
 })
 
-export const { putProduct } = shoppingCartSlice.actions
+export const { putProduct, delProductInCart } = shoppingCartSlice.actions
 export default shoppingCartSlice.reducer
