@@ -16,10 +16,6 @@ const BackFace = ({ product }: { product: any }) => {
   const confirmPut = () => {
     dispatch(putProduct({id: product.id ,quantity: quantityToPut, info: product}))
   }
-  useEffect(()=>{
-    console.log('count->', productsInCart)
-
-  },[productsInCart])
 	return (
 		<div className='flip-card-back absolute flex justify-center items-center w-full h-full'>
 			<div

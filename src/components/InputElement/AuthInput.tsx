@@ -2,6 +2,7 @@ const AuthInput = (props: {
   label: string
   type: string
   name: string
+  value: string
   margin?: string
   isAutoFocus?: boolean
   isRequired?: boolean
@@ -16,6 +17,7 @@ const AuthInput = (props: {
         type={props.type}
         id={props.name}
         name={props.name}
+        value={props.value}
         autoFocus={props.isAutoFocus}
         required={props.isRequired}
       />
