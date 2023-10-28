@@ -11,7 +11,6 @@ const Header = () => {
 	const router = useRouter()
 	const pathname = usePathname()
 	const searchParams = useSearchParams()
-	console.log('searchparams-->', pathname)
 	const checkout = () => {
 		router.push('/check-out')
 	}

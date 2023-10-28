@@ -1,16 +1,23 @@
 /** @format */
 
 'use client'
+import { setPaymentMethod } from '@/redux/slices/billSlice'
 import { useEffect, useState } from 'react'
-
+import { useSelector, useDispatch } from 'react-redux'
 const PaymentMethod = () => {
+	const dispatch = useDispatch()
 	const [isSelected, select] = useState(1)
+	const selectMethod = ({v}:{ v: 1 | 2}) => {
+		const method = {1: 'Credit card', 2: 'Cash on Delivery (COD)'}
+		select(v)
+		dispatch(setPaymentMethod(method[v]))
+	}
 	return (
 		<>
 			<h2 className='text-lg font-bold w-full text-start'>Payment Method</h2>
 			<div className='rounded border w-full my-2 border-slate-400'>
 				<div
-					onClick={() => select(1)}
+					onClick={() => selectMethod({v: 1})}
 					className='border-b p-2 cursor-pointer flex items-center border-slate-400'
 				>
 					<span
@@ -21,7 +28,7 @@ const PaymentMethod = () => {
 					Credit card
 				</div>
 				<div
-					onClick={() => select(2)}
+					onClick={() => selectMethod({v: 2})}
 					className='border-b p-2 cursor-pointer flex items-center'
 				>
 					<span

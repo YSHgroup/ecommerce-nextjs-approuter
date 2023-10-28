@@ -35,3 +35,12 @@ export interface ProductCardType {
   quantity: number
   info: InfoType
 }
+
+export interface AddressInfoType {
+	firstName: string
+	lastName: string
+	address: string
+	city: string
+	state: string
+	country: string
+}

@@ -6,7 +6,7 @@ import { delProductInCart } from '@/redux/slices/shoppingCartSlice'
 const ProductCard = ({ ware }: { ware: ProductCardType }) => {
 	const dispatch = useDispatch()
 	if (isNaN(ware.id)) return
-  // console.log('product-->', ware)
+	// console.log('product-->', ware)
 	return (
 		<div className='relative w-full m-4 p-2 text-base text-gray-700 bg-slate-100 rounded border-slate-300 border shadow-slate-400 shadow-sm'>
 			<dl className='flex'>

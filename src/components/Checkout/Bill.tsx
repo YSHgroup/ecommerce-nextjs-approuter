@@ -8,13 +8,14 @@ import { ProductCardType } from '@/types'
 import ProductCard from './ProductCard'
 import { useRouter } from 'next/navigation'
 import { calTotalPrice } from '@/functions/calTotalPrice'
+import { setTotalPrice } from '@/redux/slices/billSlice'
 const Bill = () => {
   const router = useRouter()
 	const dispatch = useDispatch()
 	const { productsInCart } = useSelector((state: any) => state.shop)
 	// console.log('shop-->', productsInCart)
   const priceList = productsInCart.map((item: ProductCardType) => ({price: item.info['price'], quantity: item.quantity}))
-  // console.log('price list-->', priceList)
+  dispatch(setTotalPrice(calTotalPrice(priceList)))
 	return (
 		<div className='h-full  p-2 overflow-auto'>
 			<div className='flex flex-wrap'>

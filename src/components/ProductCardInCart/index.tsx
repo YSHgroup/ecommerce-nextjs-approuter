@@ -29,21 +29,20 @@ const ProductCardInCart = ({
 			})
 		)
 	}
-	if(Number.isNaN(individualInfo.id)) {
+	if (Number.isNaN(individualInfo.id)) {
 		return
 	}
 	return (
 		<div className=' w-full my-2 h-fit after:clear-left bg-white text-gray-600 rounded overflow-hidden border-gray-300 border shadow-md'>
-			
 			<div className='relative float-left w-1/4 h-52'>
-			<Image
-				className='object-fit overflow-hidden max-w-none'
-				src={individualInfo.thumbnail as string}
-				alt={individualInfo.thumbnail as string}
-				fill
-				// sizes='100% 100%'
-				priority
-			/>
+				<Image
+					className='object-fit overflow-hidden max-w-none'
+					src={individualInfo.thumbnail as string}
+					alt={individualInfo.thumbnail as string}
+					fill
+					// sizes='100% 100%'
+					priority
+				/>
 			</div>
 			<div className='px-6 float-left py-3 w-3/4'>
 				<div className='columns-3 text-start whitespace-nowrap'>
@@ -52,9 +51,7 @@ const ProductCardInCart = ({
 					</h2>
 					<h3>{individualInfo.brand}</h3>
 				</div>
-				<p className='py-2'>
-					{individualInfo.description}
-				</p>
+				<p className='py-2'>{individualInfo.description}</p>
 				<div className='columns-3 '>
 					<h3>
 						<span className='pl-0 p-2 line-through opacity-75'>
