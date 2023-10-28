@@ -43,10 +43,6 @@ const Login = () => {
 			alert(error)
 		}
 	}
-	console.log(
-		'auth--',
-		JSON.parse(useSelector((state: any) => state.auth.authInfo))?.username
-	)
 
   return (
 		<Modal>

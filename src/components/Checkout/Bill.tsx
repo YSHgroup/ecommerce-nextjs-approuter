@@ -27,7 +27,7 @@ const Bill = () => {
       </p>
 			<div className='flex justify-center'>
         <button className='w-1/2 rounded bg-slate-400 hover:bg-pink-600 py-3 m-2' onClick={()=> router.push('/')}>Cancel</button>
-        <button className='w-1/2 rounded bg-cyan-600 hover:bg-pink-600 py-3 m-2'>Complete Order</button>
+        <button className='w-1/2 rounded bg-cyan-600 hover:bg-pink-600 py-3 m-2' onClick={()=> router.push('/check-out/bill')}>Complete Order</button>
       </div>
 		</div>
 	)

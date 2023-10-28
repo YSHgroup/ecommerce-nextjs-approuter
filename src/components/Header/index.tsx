@@ -5,7 +5,7 @@ import Image from 'next/image'
 import cart from '../../../public/shopping-cart-svgrepo-com.svg'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { delAuth } from '@/redux/slices/authSlice'
+// import { delAuth } from '@/redux/slices/authSlice'
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 const Header = () => {
 	const router = useRouter()
@@ -35,7 +35,7 @@ const Header = () => {
 	// 	}
 	// }, [loginState])
 	return (
-		<header className='flex w-full justify-between px-10 bg-opacity-80 bg-slate-950 h-16 items-center fixed z-20'>
+		<header className='flex w-full justify-between px-10 bg-opacity-80 bg-slate-950 h-16 items-center fixed z-10'>
 			<span>
 				<Image
 					src={'https://img.lovepik.com/element/40169/9600.png_860.png'}
