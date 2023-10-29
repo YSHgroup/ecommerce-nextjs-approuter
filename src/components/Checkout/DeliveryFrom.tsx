@@ -19,6 +19,7 @@ const DeliveryForm = () => {
 						value={useSelector((state: any) => state.bill.contact)}
 						onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch(setContact(e.target.value))}
 						placeholder='Email or Phone number'
+						required
 					/>
 				</div>
 				<div className='w-full p-3'>

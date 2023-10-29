@@ -47,7 +47,6 @@ const BackFace = ({ product }: { product: any }) => {
 				</div>
 				<div
 					className='absolute z-[3] flex justify-between items-center'
-					style={{ width: 'calc(100% - 3rem)' }}
 				>
 					<div className='text-ml font-medium'>
 						<label htmlFor='count'>Quantity: </label>
@@ -67,7 +66,6 @@ const BackFace = ({ product }: { product: any }) => {
 						<Image src={addCart} alt='add_cart' width={50} height={50} onClick={() => confirmPut()} />
 					</div>
 				</div>
-				{/* <button className="rounded from-teal-600 bg-gradient-to-t hover:bg-gradient-to-b text-cyan-100 font-bold border-emerald-950 px-6 py-4 border-b-2 shadow-convex">Shopping</button> */}
 			</div>
 		</div>
 	)

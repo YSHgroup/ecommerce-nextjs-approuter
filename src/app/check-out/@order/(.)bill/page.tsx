@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import ConfirmBill from '@/components/BtnGroup/ConfirmBill'
 import Modal from '@/components/Modal'
 
-const Bill = () => {
+const BillModal = () => {
 	const billInfo = useSelector(((state: any )=> state.bill))
 	console.log('bill-->', billInfo);
 	
@@ -45,4 +45,4 @@ const Bill = () => {
 	)
 }
 
-export default Bill
+export default BillModal

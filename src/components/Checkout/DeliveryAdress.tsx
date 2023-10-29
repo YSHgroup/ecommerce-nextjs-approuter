@@ -49,6 +49,7 @@ const DeliveryAdress = () => {
 								setAddressInfo({ ...addressInfo, firstName: e.target.value })
 							)
 						}
+						required
 					/>
 					<input
 						className='ml-2 mt-1 rounded p-2 w-2/5 outline-none border-transparent border focus:border-sky-500'
@@ -60,6 +61,7 @@ const DeliveryAdress = () => {
 								setAddressInfo({ ...addressInfo, lastName: e.target.value })
 							)
 						}
+						required
 					/>
 				</div>
 				<div>
@@ -73,6 +75,7 @@ const DeliveryAdress = () => {
 								setAddressInfo({ ...addressInfo, address: e.target.value })
 							)
 						}
+						required
 					/>
 					<div className='flex justify-between'>
 						<input
@@ -85,6 +88,7 @@ const DeliveryAdress = () => {
 									setAddressInfo({ ...addressInfo, city: e.target.value })
 								)
 							}
+							required
 						/>
 						<input
 							className='ml-2 mt-1 rounded p-2 w-2/5 outline-none border-transparent border focus:border-sky-500'
@@ -96,6 +100,7 @@ const DeliveryAdress = () => {
 									setAddressInfo({ ...addressInfo, state: e.target.value })
 								)
 							}
+							required
 						/>
 					</div>
 				</div>

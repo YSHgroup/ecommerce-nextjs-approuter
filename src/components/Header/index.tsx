@@ -11,9 +11,13 @@ const Header = () => {
 	const router = useRouter()
 	const pathname = usePathname()
 	const searchParams = useSearchParams()
+	const howManyInCart = useSelector(
+		(state: any) => state.shop.productsInCart
+	).length
 	const checkout = () => {
 		router.push('/check-out')
 	}
+
 	// const dispatch = useDispatch()
 	// const loginState = useSelector((state: any) => state.auth.authInfo)
 	// interface FullName {
@@ -54,9 +58,12 @@ const Header = () => {
 				)}
 				{pathname !== '/shopping/cart' && (
 					<div
-						className='py-8 duration-150 cursor-pointer shadow-neutral-400 hover:drop-shadow hover:animate-bounce text-teal-200'
+						className='relative p-2 cursor-pointer shadow-neutral-400 hover:drop-shadow hover:animate-pulse text-teal-200'
 						onClick={() => router.push('/shopping/cart')}
 					>
+						<span className='absolute flex w-5 h-5 justify-center items-center rounded-[100%] bg-blue-800 text-white text-xs top-1 right-2'>
+							{howManyInCart - 1}
+						</span>
 						<Image src={cart} height={50} width={50} alt='cart' />
 					</div>
 				)}
