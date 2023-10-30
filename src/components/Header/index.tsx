@@ -7,7 +7,11 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { delAuth } from '@/redux/slices/authSlice'
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
+import { signIn, signOut, useSession } from 'next-auth/react'
+
 const Header = () => {
+	const { data: session } = useSession();
+
 	const router = useRouter()
 	const pathname = usePathname()
 	const searchParams = useSearchParams()
@@ -18,6 +22,12 @@ const Header = () => {
 		router.push('/check-out')
 	}
 
+	// const signIn = () => {
+	// 	router.push('/api/auth/signin')
+	// }
+	const handleSignOut = async () => {
+		await signOut()
+	}
 	// const dispatch = useDispatch()
 	// const loginState = useSelector((state: any) => state.auth.authInfo)
 	// interface FullName {
@@ -68,6 +78,19 @@ const Header = () => {
 					</div>
 				)}
 			</div>
+			{
+				session && session.user ?
+				<button
+        onClick={() => handleSignOut()}
+      >
+        {session.user.name} Sign Out
+      </button>:
+			 <button
+			 onClick={() => signIn()}
+		 >
+			 SignIn
+		 </button>
+			}
 			{/* {loginState ? (
 				<div className='flex h-full w-3/5 min-w-max items-center max-w-max'>
 					<div className=' text-teal-200'>
