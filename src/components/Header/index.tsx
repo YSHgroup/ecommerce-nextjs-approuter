@@ -10,7 +10,7 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import { signIn, signOut, useSession } from 'next-auth/react'
 
 const Header = () => {
-	const { data: session } = useSession();
+	const { data: session } = useSession()
 
 	const router = useRouter()
 	const pathname = usePathname()
@@ -28,6 +28,23 @@ const Header = () => {
 	const handleSignOut = async () => {
 		await signOut()
 	}
+
+	// const signUp = async () => {
+	// 	const registryRes =await fetch('/api/signup',
+	// 		{
+	// 			method: 'POST',
+	// 			body: JSON.stringify({
+	// 				username: 'artem'
+	// 			}),
+	// 			headers: {
+	// 				'Content-Type': 'application/json',
+	// 			}
+	// 		}
+	// 	)
+	// 	const resInfo = await registryRes.json()
+	// 	console.log('resInfo-->', resInfo)
+	// }
+	
 	// const dispatch = useDispatch()
 	// const loginState = useSelector((state: any) => state.auth.authInfo)
 	// interface FullName {
@@ -57,40 +74,43 @@ const Header = () => {
 					alt='logo'
 				/>
 			</span>
-			<div className='flex h-full overflow-hidden w-3/5 min-w-max items-center max-w-max'>
-				{pathname !== '/check-out' && (
-					<button
-						className='p-2 mx-4 rounded border-r shadow-sm shadow-slate-200 cursor-pointer hover:bg-sky-700/80'
-						onClick={checkout}
-					>
-						Check Out
-					</button>
-				)}
-				{pathname !== '/shopping/cart' && (
-					<div
-						className='relative p-2 cursor-pointer shadow-neutral-400 hover:drop-shadow hover:animate-pulse text-teal-200'
-						onClick={() => router.push('/shopping/cart')}
-					>
-						<span className='absolute flex w-5 h-5 justify-center items-center rounded-[100%] bg-blue-800 text-white text-xs top-1 right-2'>
-							{howManyInCart - 1}
-						</span>
-						<Image src={cart} height={50} width={50} alt='cart' />
+
+			{session && session.user ? (
+				<div className='flex w-max'>
+					<div className='flex h-full overflow-hidden w-3/5 min-w-max items-center max-w-max'>
+						{pathname !== '/check-out' && (
+							<button
+								className='p-2 mx-4 rounded border-r shadow-sm shadow-slate-200 cursor-pointer hover:bg-sky-700/80'
+								onClick={checkout}
+							>
+								Check Out
+							</button>
+						)}
+						{pathname !== '/shopping/cart' && (
+							<div
+								className='relative p-2 cursor-pointer shadow-neutral-400 hover:drop-shadow hover:animate-pulse text-teal-200'
+								onClick={() => router.push('/shopping/cart')}
+							>
+								<span className='absolute flex w-5 h-5 justify-center items-center rounded-[100%] bg-blue-800 text-white text-xs top-1 right-2'>
+									{howManyInCart - 1}
+								</span>
+								<Image src={cart} height={50} width={50} alt='cart' />
+							</div>
+						)}
 					</div>
-				)}
-			</div>
-			{
-				session && session.user ?
-				<button
-        onClick={() => handleSignOut()}
-      >
-        {session.user.name} Sign Out
-      </button>:
-			 <button
-			 onClick={() => signIn()}
-		 >
-			 SignIn
-		 </button>
-			}
+					<button
+						className='px-3 rounded border-b'
+						onClick={() => handleSignOut()}
+					>
+						{session.user.name} Sign Out
+					</button>
+				</div>
+			) : (
+				<div className='flex'>
+					<button className='p-2 mx-2' onClick={() => signIn()}>SignIn</button>
+					<button className='p-2 mx-2' onClick={()=> router.push('/registry')}>Registry</button>
+				</div>
+			)}
 			{/* {loginState ? (
 				<div className='flex h-full w-3/5 min-w-max items-center max-w-max'>
 					<div className=' text-teal-200'>

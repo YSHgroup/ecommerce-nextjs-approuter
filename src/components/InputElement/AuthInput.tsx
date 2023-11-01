@@ -1,8 +1,10 @@
+'use client'
 const AuthInput = (props: {
   label: string
   type: string
   name: string
   value: string
+  setInput: Function
   margin?: string
   isAutoFocus?: boolean
   isRequired?: boolean
@@ -18,6 +20,7 @@ const AuthInput = (props: {
         id={props.name}
         name={props.name}
         value={props.value}
+        onChange={e => props.setInput(e.target.value)}
         autoFocus={props.isAutoFocus}
         required={props.isRequired}
       />

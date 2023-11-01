@@ -1,14 +1,32 @@
-const { MongoClient } = require('mongodb')
+import mongoose from "mongoose";
 
-const uri = 'mongodb://localhost:27017/next-ecommerce'
+const Schema = mongoose.Schema
 
-const connectDB = async () => {
-  const client = MongoClient.connet(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-  )
-  return client
+mongoose.connect(process.env.MONGO_URI!).then(() => console.log('Connect success')).catch((err: Error) => console.log({ 'connect': err }))
+mongoose.Promise = global.Promise
+export const db = {
+  User: userModel()
 }
 
-module.exports = { connectDB }
+function userModel() {
+
+  const userSchema = new Schema({
+    email: { type: String, unique: true, required: true },
+    username: { type: String, required: true },
+    password: { type: String, required: true },
+    hash: { type: String, required: true },
+  }, {
+    timestamps: true
+  })
+
+  userSchema.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform(doc, ret, options) {
+      delete ret._id
+      delete ret.hash
+    },
+  })
+
+  return mongoose.models.User || mongoose.model('User', userSchema)
+}

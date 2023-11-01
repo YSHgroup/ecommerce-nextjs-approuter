@@ -7,20 +7,22 @@ const AuthBtn = ({
   text,
   type,
   children,
-  tColor
+  tColor,
+  submit
 }: {
   bgColor: React.ReactNode
   text: string
   type?: 'button' | 'submit' | 'reset'
   children?: React.ReactNode
   tColor?: string
+  submit?: Function
 }) => {
   const router = useRouter()
   return (
     <button
       className={`${bgColor} rounded bg-lime-200 from-lime-500 bg-gradient-to-b p-2 cursor-pointer w-1/3 min-w-max flex justify-center `}
       type={type}
-      onClick={() => text === 'Cancel' ? router.back(): ''}
+      onClick={() => text === 'Cancel' ? router.back(): submit&&submit()}
       style={{color: tColor}}
     >
       {children&& <span className='mr-2 align-bottom'>{children}</span>}

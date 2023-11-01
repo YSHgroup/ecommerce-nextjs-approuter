@@ -1,15 +1,14 @@
-import { MongoClient, ObjectId } from 'mongodb'
+const { MongoClient } = require('mongodb')
 
-export async function connectToDatabase() {
-  const client = await MongoClient.connect(process.env.MONGO_URI as string, {
-    // useNewUrlParser: true,
-    // useUnifiedTopology: true
-  })
+const uri = 'mongodb://localhost:27017/next-ecommerce'
 
+const connectDB = async () => {
+  const client = MongoClient.connet(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+  )
   return client
 }
 
-
-export function string2ObjectId(params:string) {
-  return new ObjectId(params);
-};
+module.exports = { connectDB }
