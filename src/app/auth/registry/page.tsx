@@ -9,10 +9,14 @@ import confirm from '../../../../public/confirm.svg'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { validator } from '@/lib/validator'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const Registry = () => {
 	// const router = useRouter()
 	const [passErr, setPassErr] = useState(false)
+	const [errorStatus, setErrorStatus] = useState(false)
+	const [error, setError] =useState([''])
 	const [newUser, setNewUser] = useState({
 		email: '',
 		username: '',
@@ -20,8 +24,12 @@ const Registry = () => {
 		confirm: '',
 	})
 	const submitUser = async () => {
-    // if(newUser.email.length < 5 || newUser.name.length < 3 )
-    const error = validator(newUser)
+		console.log('user-->', newUser)
+		setError(validator(newUser))
+		if (!!error) {
+			setErrorStatus(true)
+			return
+		}
     console.log('valid--err', error)
 		if (newUser.password !== newUser.confirm) {
 			setPassErr(true)
@@ -36,9 +44,15 @@ const Registry = () => {
 				'Content-Type': 'application/json',
 			},
 		})
-		const resInfo = await registryRes.json()
-		console.log('resInfo-->', resInfo)
-
+		console.log('registry-res-->', registryRes)
+		try {
+			const resInfo = await registryRes.json()
+			console.log('resInfo-->', resInfo)
+			
+		} catch (error) {
+			console.log('mongo-error-->', error)
+			throw 'mongo--' + error
+		}
 	}
 	const PasswordErr = () => {
 		return (
@@ -51,11 +65,20 @@ const Registry = () => {
 		const timeOut = setTimeout(() => {
 			setPassErr(false)
 		}, 1500)
-		return clearTimeout(timeOut)
+		return () => clearTimeout(timeOut)
 	}, [passErr])
+
+	useEffect(()=>{
+		const timeOutf =setTimeout(() => {
+			setErrorStatus(false)
+		}, 1000);
+		return () => clearTimeout(timeOutf)
+	},[errorStatus])
+	const notify = (message: string) => toast(message, {type: toast.TYPE.ERROR})
+	if(errorStatus) error.map((message: string) => notify(message))
 	return (
 		<Modal>
-			<div className='relative flex flex-col border-4 border-teal-500 rounded-lg bg-gradient-to-b from-sky-800 bg-sky-400 w-[50%] h-[50vh] min-h-[18rem] max-w-xl'>
+			<div className='flex flex-col border-4 border-teal-500 rounded-lg bg-gradient-to-b from-sky-800 bg-sky-400 w-[50%] h-[50vh] min-h-[18rem] max-w-xl'>
 				<h1 className=' text-4xl p-2 pt-8 border-b-2 border-teal-400'>
 					Registry
 				</h1>
@@ -124,8 +147,8 @@ const Registry = () => {
 					</div>
 				</form>
 			</div>
-      {/* <PasswordErr /> */}
 			{passErr ? <PasswordErr /> : ''}
+			<ToastContainer/>
 		</Modal>
 	)
 }

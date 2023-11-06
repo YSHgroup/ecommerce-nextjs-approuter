@@ -108,7 +108,7 @@ const Header = () => {
 			) : (
 				<div className='flex'>
 					<button className='p-2 mx-2' onClick={() => signIn()}>SignIn</button>
-					<button className='p-2 mx-2' onClick={()=> router.push('/registry')}>Registry</button>
+					<button className='p-2 mx-2' onClick={()=> router.push('auth/registry')}>Registry</button>
 				</div>
 			)}
 			{/* {loginState ? (

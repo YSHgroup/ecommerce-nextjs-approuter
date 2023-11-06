@@ -9,20 +9,28 @@ import confirm from '../../../../public/confirm.svg'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { validator } from '@/lib/validator'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const Registry = () => {
 	// const router = useRouter()
 	const [passErr, setPassErr] = useState(false)
-	// const [errorStatus, setErrorStatus] = 
+	const [errorStatus, setErrorStatus] = useState(false)
+	const [error, setError] =useState([''])
 	const [newUser, setNewUser] = useState({
 		email: '',
 		username: '',
 		password: '',
 		confirm: '',
 	})
+	
 	const submitUser = async () => {
-		console.log('user-->', newUser)
-		const error = validator(newUser)
+		setError(validator(newUser))
+		console.log('user-->', error)
+		if (!!error.length) {
+			setErrorStatus(true)
+			return
+		}
     console.log('valid--err', error)
 		if (newUser.password !== newUser.confirm) {
 			setPassErr(true)
@@ -37,7 +45,7 @@ const Registry = () => {
 				'Content-Type': 'application/json',
 			},
 		})
-		console.log('registry-res-->', registryRes)
+		
 		try {
 			const resInfo = await registryRes.json()
 			console.log('resInfo-->', resInfo)
@@ -60,6 +68,16 @@ const Registry = () => {
 		}, 1500)
 		return () => clearTimeout(timeOut)
 	}, [passErr])
+	
+	useEffect(()=>{
+		if(errorStatus) error.map((message: string) => notify(message))
+		const timeOutf =setTimeout(() => {
+			setErrorStatus(false)
+		}, 1000);
+		return () => clearTimeout(timeOutf)
+	},[errorStatus, error])
+	// console.log('error-status-->', errorStatus, '--->', error)
+	const notify = (message: string) => toast(message, {type: 'error', style: {backgroundColor: 'lightseagreen', color: 'white'}})
 	return (
 		<Modal>
 			<div className='flex flex-col border-4 border-teal-500 rounded-lg bg-gradient-to-b from-sky-800 bg-sky-400 w-[50%] h-[50vh] min-h-[18rem] max-w-xl'>
@@ -132,6 +150,7 @@ const Registry = () => {
 				</form>
 			</div>
 			{passErr ? <PasswordErr /> : ''}
+			<ToastContainer/>
 		</Modal>
 	)
 }
