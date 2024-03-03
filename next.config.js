@@ -4,7 +4,7 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    domains:['img.lovepik.com', 'placehold.co', 'i.dummyjson.com']
+    domains:['img.lovepik.com', 'placehold.co', 'i.dummyjson.com', 'cdn.dummyjson.com']
     // remotePatterns: [
     //   {
     //     protocol: "https",
