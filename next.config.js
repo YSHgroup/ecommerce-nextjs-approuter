@@ -1,4 +1,18 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
+  images: {
+    domains:['img.lovepik.com', 'placehold.co', 'i.dummyjson.com', 'cdn.dummyjson.com']
+    // remotePatterns: [
+    //   {
+    //     protocol: "https",
+    //     hostname: ["img.lovepik.com"],
+    //     // port: "",
+    //   },
+    // ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
